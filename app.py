@@ -75,14 +75,14 @@ if returns_file and cov_file:
         with st.spinner("Running NSGA-II optimization..."):
             problem = PortfolioOptimization()
             algorithm = NSGA2(
-                pop_size=150,
+                pop_size=250,
                 sampling=FloatRandomSampling(),
                 crossover=SBX(prob=0.9, eta=15),
                 mutation=PM(eta=20),
                 eliminate_duplicates=True,
                 repair=PortfolioRepair()
             )
-            termination = get_termination("n_gen", 200)
+            termination = get_termination("n_gen", 600)
             res = minimize(problem, algorithm, termination, seed=42, verbose=False)
 
         F = res.F
